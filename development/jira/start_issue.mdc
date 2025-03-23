@@ -1,5 +1,5 @@
 ---
-description: Instructions for handling requests to start working on a Jira issue
+description: 
 globs: 
 alwaysApply: false
 ---
@@ -12,19 +12,19 @@ The project key is MT
 
 When the user uses any of the following phrases, interpret it as a request to start working on a Jira issue:
 
-- "Let's start issue MT-<xxx>"
-- "I want to work on MT-<xxx>"
-- "Let's begin ticket MT <xxx>"
-- "Start working on MT<xxx>"
-- "Let's pick up MT<xxx>"
-- "Time to tackle MT-<xxx>"
-- "Let's get started with MT <xxx>"
-- "I need to start issue MT <xxx>"
+- "Let's start issue <YY>-<xxx>"
+- "I want to work on <YY>-<xxx>"
+- "Let's begin ticket <YY> <xxx>"
+- "Start working on <YY><xxx>"
+- "Let's pick up <YY><xxx>"
+- "Time to tackle <YY>-<xxx>"
+- "Let's get started with <YY> <xxx>"
+- "I need to start issue <YY> <xxx>"
 - "Can we start on <xxx>"
 - <xxx>
 
 
-where <xxx> is the issue number.
+where <xxx> is the issue number and <YY> is the project key.
 
 ## Process for Starting an Issue
 
