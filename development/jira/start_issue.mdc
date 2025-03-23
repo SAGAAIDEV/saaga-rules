@@ -6,8 +6,6 @@ alwaysApply: false
 
 # Starting a Jira Issue
 
-The project key is MT
-
 ## Trigger Words and Phrases
 
 When the user uses any of the following phrases, interpret it as a request to start working on a Jira issue:
