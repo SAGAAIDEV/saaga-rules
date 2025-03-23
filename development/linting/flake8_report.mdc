@@ -1,0 +1,6 @@
+---
+description: This rule runs after the formatter mcp tool runs.
+globs: 
+alwaysApply: false
+---
+run the flake8_report mcp tool.

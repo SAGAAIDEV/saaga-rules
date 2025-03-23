@@ -1,0 +1,6 @@
+---
+description: Call this rule before runnign generate_test_reports
+globs: 
+alwaysApply: false
+---
+Run the generate test report mcp tool on src/

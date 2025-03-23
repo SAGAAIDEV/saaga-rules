@@ -1,0 +1,6 @@
+---
+description: Run this after you accepted changes of the creation or edit of files.
+globs: 
+alwaysApply: false
+---
+run the mcp tool formatter

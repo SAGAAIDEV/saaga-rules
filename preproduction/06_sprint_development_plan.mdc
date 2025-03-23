@@ -1,0 +1,120 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Instructions for Creating a Technical Requirements Document (TRD)
+
+These instructions guide you in writing a comprehensive and effective Technical Requirements Document.
+
+## 1. Preparation and Planning
+
+*   **Understand the Scope:** Define the exact system, subsystem, or component the TRD will cover. This scope determines the breadth and depth of the requirements.
+*   **Review Existing Documentation:** Thoroughly review the Vision Document, Software Requirements Specification (SRS), System Design Document (SDD), User Stories, and any other related documents. This provides context and ensures alignment.
+*   **Identify Stakeholders:** Determine who will use the TRD (developers, testers, project managers, clients). Tailor the language and level of detail to their needs.
+*   **Choose Tools:** Select tools for writing, managing, and versioning the TRD (e.g., Markdown editor, Confluence, Google Docs, Git).
+*   **Establish Naming Conventions:** Define clear and consistent naming conventions for requirements (e.g., FR-001, NFR-001, IR-001) and data elements.
+*   **Define a Glossary:** Create a glossary of terms to ensure consistent understanding of technical jargon and acronyms.
+
+## 2. Gathering Requirements
+
+*   **Elicit Requirements from Stakeholders:** Conduct interviews, workshops, or surveys to gather requirements from all relevant stakeholders.
+*   **Analyze Existing Systems:** If the system is replacing or integrating with an existing system, analyze that system to identify relevant requirements.
+*   **Consider Different Perspectives:** Explore requirements from different perspectives, such as user needs, business goals, security concerns, and technical constraints.
+*   **Focus on Specificity:** Drill down to precise details. Avoid vague statements like "The system should be fast." Instead, aim for "The system should respond to user requests within 2 seconds."
+*   **Use Templates and Checklists:** Leverage templates and checklists to ensure comprehensive coverage of all relevant requirement categories (functional, non-functional, interface, data, security).
+
+## 3. Writing the TRD
+
+*   **Follow the TRD Structure:** Adhere to the standard TRD structure outlined below (or adapt it to your specific project needs):
+
+    *   **1. Introduction:**
+        *   Purpose of the document
+        *   Scope of the system/component
+        *   References to related documents
+    *   **2. Functional Requirements:**
+        *   Detailed descriptions of what the system *must do*.
+        *   Input data, processing logic, output data, error handling.
+        *   Dependencies on other requirements or systems.
+    *   **3. Non-Functional Requirements:**
+        *   Detailed descriptions of *how well* the system must perform.
+        *   Performance, security, usability, reliability, scalability, maintainability.
+        *   Measurable metrics and target values.
+    *   **4. Interface Requirements:**
+        *   Detailed descriptions of how the system interacts with other systems, hardware, or users.
+        *   Data formats, protocols, API specifications, error handling.
+    *   **5. Data Requirements:**
+        *   Data structures, data types, data validation rules.
+        *   Database schema, tables, relationships, constraints.
+    *   **6. Security Requirements:**
+        *   Authentication, authorization, data protection, vulnerability management.
+        *   Security standards and best practices.
+    *   **7. Hardware Requirements (If Applicable):**
+        *   Minimum and recommended hardware specifications.
+        *   CPU, memory, storage, network bandwidth.
+    *   **8. Software Requirements:**
+        *   Operating systems, libraries, frameworks.
+        *   Version numbers and dependencies.
+    *   **9. Assumptions and Constraints:**
+        *   Explicitly state any assumptions made during requirements gathering.
+        *   Document any constraints on the design or implementation.
+    *   **10. Glossary:**
+        *   Define technical terms, acronyms, and project-specific vocabulary.
+
+*   **Write Clear and Concise Requirements:**
+    *   Use simple, direct language. Avoid jargon or explain it clearly.
+    *   Use active voice and strong verbs.
+    *   Each requirement should be a single, complete sentence.
+    *   Avoid ambiguity. Be specific and precise.
+
+*   **Make Requirements Measurable:**
+    *   Define metrics that can be used to verify that the requirement has been met.
+    *   Use quantitative measures whenever possible (e.g., response time in seconds, transactions per second, memory usage in megabytes).
+
+*   **Provide Rationale for Each Requirement:**
+    *   Explain why the requirement is important and how it contributes to the project's goals.
+    *   This helps stakeholders understand the context and priorities.
+
+*   **Example of a well-written requirement:**
+
+    ```
+    * **FR-001: User Authentication**
+        * **Description:** The system shall authenticate users using email address and password credentials.
+        * **Input Data:** Email address (validated format), password (minimum 8 characters, requiring one uppercase letter, one lowercase letter, and one number).
+        * **Processing Logic:** Verify email exists, hash password and compare with stored hash, create session if successful.
+        * **Output Data:** Success message or error message.
+        * **Error Handling:** Display error messages for invalid email/password combination, account locked due to multiple failed attempts, etc.
+        * **Rationale:** This ensures that only authorized users can access the system.
+    ```
+
+## 4. Reviewing and Validating the TRD
+
+*   **Review with Stakeholders:** Share the TRD with all relevant stakeholders for review and feedback.
+*   **Address Comments and Concerns:** Carefully consider all feedback and revise the TRD accordingly.
+*   **Verify Traceability:** Ensure that all requirements can be traced back to the Vision Document, SRS, or other relevant documents.
+*   **Conduct Walkthroughs:** Conduct walkthroughs with developers and testers to ensure they understand the requirements and their implications.
+*   **Get Sign-Off:** Obtain formal sign-off from key stakeholders to indicate their approval of the TRD.
+
+## 5. Maintaining the TRD
+
+*   **Use Version Control:** Store the TRD in a version control system (e.g., Git) to track changes and facilitate collaboration.
+*   **Update the TRD as the System Evolves:** Keep the TRD up-to-date as the system evolves and requirements change.
+*   **Communicate Changes:** Communicate any changes to the TRD to all stakeholders.
+*   **Establish a Change Management Process:** Implement a formal change management process to ensure that changes to the TRD are properly reviewed and approved.
+*   **Regular Reviews:** Schedule regular reviews of the TRD to ensure it remains accurate and complete.
+
+## 6. Saving a new TRD
+
+*   Save in ./docs/preproduction/02_technical_requirements.md
+
+## Key Considerations
+
+*   **Prioritize Requirements:** If possible, prioritize requirements based on their importance to the project's success. This helps guide development efforts and manage scope.
+*   **Document Assumptions:** Explicitly document any assumptions made during the requirements gathering process.
+*   **Document Constraints:** Clearly state any constraints on the design or implementation of the system (e.g., budget limitations, technology restrictions, regulatory compliance requirements).
+*   **Focus on Testability:** Write requirements in a way that makes them testable. For non-functional requirements, specify clear metrics and target values.
+*   **Remember the Audience:** Write the TRD with the intended audience in mind. Use clear and concise language, and avoid jargon that may not be understood by all stakeholders.
+
+By following these instructions, you can create a Technical Requirements Document that is clear, accurate, complete, and concise, and that effectively guides the development of your software system.
+If you are missing information request it.
+

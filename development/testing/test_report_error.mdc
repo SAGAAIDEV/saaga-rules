@@ -1,0 +1,5 @@
+---
+description: Attach this rule if generate_test_reports returns a message with <ToolStatus.FAILURE: 'Failure'>
+globs: 
+alwaysApply: false
+---
