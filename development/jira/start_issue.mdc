@@ -38,28 +38,28 @@ When a trigger phrase is detected:
 
 2. **Use the Jira MCP tool get_issue** to fetch the issue details.
 
-3. Display the issue information so the user can review what they'll be working on.
-
-4. **Use the command line** to create a branch based on the issue key:
+3. **Use the command line** to create a branch based on the issue key:
    ```bash
    git checkout -b MT-<xxx>-descriptive-branch-name
    ```
    The branch name should follow the pattern: `{ISSUE-KEY}-{descriptive-name-with-hyphens}`
    Do NOT checkout main and pull. Branch from the current branch.
 
-5. **Use the Jira MCP tool transition_issue** to transition the issue to "In Progress".
+4. **Use the Jira MCP tool transition_issue** to transition the issue to "In Progress".
 
-6. **Push the new branch to the remote repository**:
+5. **Push the new branch to the remote repository**:
    ```bash
    git push -u origin <branch-name>
    ```
    This ensures the branch is published to the remote repository and sets up tracking.
 
-7. **Verify branch publication**:
+6. **Verify branch publication**:
    ```bash
    git branch -vv
    ```
    This confirms the branch is properly tracking its remote counterpart.
+
+7. Display the issue information so the user can review what they'll be working on.
 
 
 ## Important Notes
