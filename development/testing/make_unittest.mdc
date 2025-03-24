@@ -25,8 +25,7 @@ This approach ensures test files are created in the correct location following o
 
 1. **Maximum Coverage, Minimum Code**: Write tests that cover all code paths with the least possible testing code.
 2. **One Class Per Function**: Every function should have its own test class for clear organization.
-3. **Fixtures should mock**: Every test class should mock what is required and make fixtures for the test.
-3. **Multiple Test Methods**: Test different scenarios and edge cases as separate methods for each branch in the functions code.
+3. **Multiple Test Methods**: Test different scenarios and edge cases as separate methods.
 4. **Descriptive Test Names**: Use clear, descriptive names that explain what is being tested.
 5. **Isolated Tests**: Each test should be independent and not rely on other tests.
 
@@ -62,7 +61,6 @@ class TestClassName:
 1. **Common Test Data**: Reuse test data across multiple tests.
 2. **Complex Setup**: When setup is complex and shared between tests.
 3. **Resources**: Database connections, API clients, etc.
-4. **Mocking**: When things need to be mocked.
 
 ### Fixture Scope
 
@@ -283,3 +281,16 @@ class TestFunctionUnderTest:
 8. **Avoid Over-Mocking**: Test real integration when practical
 
 Remember: the goal is to achieve maximum coverage with the minimum amount of testing code, while ensuring tests remain readable and maintainable. 
+
+@pytest.fixture
+def mock_database():
+    """
+    Provides a mocked database connection.
+    
+    Returns:
+        A MagicMock object with preconfigured query responses.
+        
+    Note:
+        This fixture patches the database connection module,
+        so no actual database connections will be made.
+    """ 
