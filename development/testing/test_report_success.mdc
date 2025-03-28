@@ -1,7 +1,0 @@
----
-description: Request this rule if generate_test_reports returns <ToolStatus.SUCCESS: 'Success'>
-globs: 
-alwaysApply: false
----
-Call the mcp tool get coverage report.
-Call the mcp tool make_unittest_file

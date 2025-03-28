@@ -1,6 +1,0 @@
----
-description: Attach this rule if generate_test_reports returns a message with an Error
-globs: 
-alwaysApply: false
----
-read the logs in src/mcp_qalogs/qa.log if there is an error fix it.

@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+This project uses sqlite3 library. All interfacing with the database should be dictionaries.
+
+Only make unit tests upon manual request. Never make unit tests on your own

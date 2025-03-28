@@ -1,0 +1,13 @@
+---
+description: After mcp tool run_pytest runs and returns results.
+globs: 
+alwaysApply: false
+---
+
+If you get an exception error like "status": "Exception" 
+1. Call the mcp tool read log and get the last entry 1. If it isnt an exception, call again for the last 5.
+2. Explain the error.
+3. Fix the error.
+4. Run the mcp tool run_pytest again
+
+If you get an "status": "Error" , run the mcp tool next pytest error.

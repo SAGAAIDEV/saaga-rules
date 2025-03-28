@@ -1,8 +1,12 @@
 ---
-description: Attach this rule when you see "error_type": "PyTestCollectionError" or "PyTestError" after running next pytest error mcp tool.
+description: after next_pytest runs
 globs: 
 alwaysApply: false
 ---
+After "Success".
+1. Stop. Notify that there are no more errors.
+
+Clearly explain the error
 Repeat until the error is fixed or you are interupted.
     1. Fix the error.
     2. Run make_pytest_report on the specific error.

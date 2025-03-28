@@ -3,4 +3,19 @@ description: Run this after you accepted changes of the creation or edit of file
 globs: 
 alwaysApply: false
 ---
-run the mcp tool formatter
+1. Run the mcp tool formatter
+2. Run the mcp tool flake8 report
+3. If There are no errors.
+    Run the mcp tool pylint report.
+    4. If there are pylint errors
+    Until all pylint errors are fixed.
+        1. Explain the error.
+        2. Fix the error.
+        3. Call the mcp tool pylint report
+
+4. If there are flak8 errors
+    Until all flake8 errors are fixed.
+        1. Explain the error.
+        2. Fix the error.
+        3. Call the mcp tool flake 8 report
+

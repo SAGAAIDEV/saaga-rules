@@ -1,6 +1,0 @@
----
-description: When asked to read the logs
-globs: 
-alwaysApply: false
----
-mcp_qa logs: src/mcp_qa/logs/qa.log

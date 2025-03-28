@@ -294,3 +294,6 @@ def mock_database():
         This fixture patches the database connection module,
         so no actual database connections will be made.
     """ 
+
+with get_session(test_engine) as session:
+    yield session 
