@@ -1,0 +1,15 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Follow each one of these steps.
+1. Call mcp tool list_devices.
+3. call mcp tool get_capture_directory.
+    1. If not explicitly asked to create a new version, assume you are overwritting so set create_new_version to false.
+4. List the directory.
+3. call the mcp tool_record_start. DO NOT USE OBS VIRTUAL CAMERA EVER.
+    If cameras not specified the priority devices are
+    Camera - FaceTime HD Camera
+    Screen - Screen 0
+    Audio - PD200X Podcast Microphone / MacBook Pro Microphone

@@ -1,0 +1,10 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+1. Use the mcp tool get capture directory.
+2. If there isn't a transcript json file attach the transcribe rule.
+3. use the mcp tool get transcription
+4. Created a linked in post read out to me. 
+5. Await my approval or suggestions.

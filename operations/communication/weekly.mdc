@@ -1,0 +1,63 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Summarize Weekly Meeting Notes
+
+This rule provides a step-by-step guide for summarizing weekly meeting notes using the available MCP tools.
+
+1.  **Locate the Latest Audio File:**
+    *   Navigate to the directory `/Users/andrew/saga/videos/captures/Zoom`.
+    *   Identify the subdirectory corresponding to the latest weekly meeting based on the date and naming convention (e.g., `YYYY-MM-DD HH.MM.SS Weekly`). You may need to list the directory contents using the `list_dir` tool if unsure.
+    *   Once the directory is identified, find the audio file matching the pattern `audio*.m4a` within that directory. Note down its absolute path.
+
+2.  **Transcribe the Audio File:**
+    *   Call the `mcp_transcriber_transcribe_file` tool.
+    *   Use the absolute path of the audio file found in Step 1 as the `input_path` parameter.
+    *   *Example call:*
+
+        ```
+        mcp_transcriber_transcribe_file(input_path='/Users/andrew/saga/videos/captures/Zoom/YYYY-MM-DD HH.MM.SS Weekly/audio1234567890.m4a') # Replace with actual path
+        ```
+
+    *   The tool will return a `json_path` for the generated transcript file (e.g., `/Users/andrew/saga/videos/captures/Zoom/YYYY-MM-DD HH.MM.SS Weekly/transcript.json`). Note this path.
+
+3.  **Read the Transcript:**
+    *   Call the `mcp_transcriber_read_transcript` tool.
+    *   Use the `json_path` obtained in Step 2 as the `json_path` parameter.
+    *   *Example call:*
+
+        ```
+        mcp_transcriber_read_transcript(json_path='/Users/andrew/saga/videos/captures/Zoom/YYYY-MM-DD HH.MM.SS Weekly/transcript.json') # Replace with actual path
+        ```
+
+    *   The tool will return the transcribed text in the `text` field of the result.
+
+4.  **Analyze the Transcript Content:**
+    Manually and carefully read through the complete transcribed text. While the tool provides the words spoken, your expertise is needed to interpret the context and significance.
+    Identify and Document Key Points: As you read, make note of:
+    *   Major topics and agenda items discussed.
+    *   Decisions that were made.
+    *   Specific action items assigned, including who is responsible and any deadlines mentioned.
+    *   Significant updates or progress reported on projects.
+    *   Challenges, roadblocks, or risks that were highlighted.
+    *   Any important questions raised or points of clarification.
+    Organize your notes logically, perhaps by speaker or topic, to facilitate drafting the summary.
+
+5.  **Draft the Concise Summary:**
+    Using your organized notes from Step 4, compose a summary of the meeting.
+    Your goal is conciseness and clarity. The summary should be brief (target one to two paragraphs) and easy to read quickly.
+    Focus on the most critical outcomes, decisions, and action items. Not every detail from the transcript needs to be included.
+    Ensure the summary accurately reflects the meeting's substance and maintains a professional, objective tone.
+
+6.  **Post the Summary to Slack:**
+    *   Call the `mcp_slack_slack_post_message` tool.
+    *   Set the `channel_id` parameter to `C085HTL3QP9` (the ID for the "next-meeting" channel).
+    *   Set the `text` parameter to the summary you created in Step 5.
+    *   *Example call:*
+
+        ```
+        mcp_slack_slack_post_message(channel_id='C085HTL3QP9', text='Meeting Summary:...') # Replace with actual summary
+        ```
+

@@ -1,10 +1,10 @@
 ---
-description: when start issue is mentioned
+description: 
 globs: 
 alwaysApply: false
 ---
-
 # Starting a Jira Issue
+The project should attach the core jira rule before this runs.
 
 ## Trigger Words and Phrases
 
@@ -24,57 +24,86 @@ When the user uses any of the following phrases, interpret it as a request to st
 
 where <xxx> is the issue number and <YY> is the project key.
 
+
+
+
 ## Process for Starting an Issue
 
 When a trigger phrase is detected:
 
 1. **Check for uncommitted changes** first:
-   ```bash
-   git status --porcelain
+   Use the `mcp_git_git_status` tool with repo_path parameter to check for uncommitted changes.
+   
    ```
+   mcp_git_git_status(
+     repo_path="/path/to/repo"
+   )
+   ```
+   
    If there are uncommitted changes, warn the user and stop the process. The user should commit or stash their changes before starting a new issue.
 
-2. **Use the Jira MCP tool get_issue** to fetch the issue details.
+2. **Use the MCP Atlassian tool jira_get_issue** to fetch the issue details.
 
-3. **Use the command line** to create a branch based on the issue key:
-   ```bash
-   git checkout -b MT-<xxx>-descriptive-branch-name
+3. **Create a new branch** based on the issue key:
+   Use the `mcp_git_git_create_branch` tool with repo_path and branch_name parameters:
+   
    ```
+   mcp_git_git_create_branch(
+     repo_path="/path/to/repo",
+     branch_name="<YY>-<xxx>-descriptive-branch-name"
+   )
+   ```
+   
    The branch name should follow the pattern: `{ISSUE-KEY}-{descriptive-name-with-hyphens}`
-   Do NOT checkout main and pull. Branch from the current branch.
 
-4. **Use the Jira MCP tool transition_issue** to transition the issue to "In Progress".
-
-5. **Push the new branch to the remote repository**:
-   ```bash
-   git push -u origin <branch-name>
+4. **Switch to the new branch**:
+   Use the `mcp_git_git_checkout` tool with repo_path and branch_name parameters:
+   
    ```
-   This ensures the branch is published to the remote repository and sets up tracking.
-
-6. **Verify branch publication**:
-   ```bash
-   git branch -vv
+   mcp_git_git_checkout(
+     repo_path="/path/to/repo",
+     branch_name="<YY>-<xxx>-descriptive-branch-name"
+   )
    ```
-   This confirms the branch is properly tracking its remote counterpart.
+
+5. **Use the Jira MCP tool transition_issue** to transition the issue to "In Progress".
+
+6. **Push the new branch to the remote repository**:
+   Use the `mcp_git_git_push` tool with repo_path and set_upstream parameters to push and set up tracking:
+   
+   ```
+   mcp_git_git_push(
+     repo_path="/path/to/repo",   # required: path to repository
+     remote="origin",             # optional: defaults to "origin"
+     branch=None,                 # optional: defaults to current branch
+     force=False,                 # optional: force push
+     set_upstream=True            # optional: set up tracking
+   )
+   ```
+   
+   This ensures the branch is published to the remote repository and sets up tracking. The tool now supports all necessary parameters for standard git push operations.
 
 7. Display the issue information so the user can review what they'll be working on.
 
-
 ## Important Notes
 
-- ONLY use the command line for Git operations (creating branches)
+- Prefer using MCP git tools for Git operations when available
+- If an MCP git tool isn't available for a specific operation, use terminal commands instead
 - ONLY use the MCP Jira tools for interacting with Jira (fetching issue details, updating status)
 - Always check for uncommitted changes before creating a new branch
-- Always check out from main and pull the latest changes before creating a new branch
-- Always use the MT project code for issues
+- Branch from the current branch (don't automatically checkout main and pull)
+- Always use the appropriate project code for issues
 
 ## Example Complete Workflow
 
-User: "Let's start MT-107"
+User: "Let's start YY-XXX"
 
-When starting a new issue with @start-issue.mdc:
-1. Create a branch: git checkout -b feature/[ISSUE-ID]-description
-2. Publish the branch: git push -u origin feature/[ISSUE-ID]-description
-3. Only then proceed with implementation
+When starting a new issue:
+1. Check for uncommitted changes using mcp_git_git_status
+2. Fetch issue details with mcp_mcp-atlassian_jira_get_issue
+3. Create a branch with mcp_git_git_create_branch
+4. Switch to the branch with mcp_git_git_checkout
+5. Transition the issue to "In Progress" with mcp_mcp-atlassian_jira_transition_issue
+6. Push the branch with mcp_git_git_push (with set_upstream=true)
 
 

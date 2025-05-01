@@ -1,0 +1,15 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Development Planning Rule (plan)
+
+**Activation:** Manually triggered when the objective is **only** planning and documentation.
+
+**Instructions:**
+
+1.  **DO NOT EDIT CODE FILES:** Under absolutely no circumstances should you use the `edit_file` tool (or any other method) to modify files containing source code (e.g., `.py`, `.js`, `.ts`, `.java`, `.c`, `.cpp`, `.html`, `.css`, etc.).
+2.  **ONLY EDIT MARKDOWN FILES:** Your primary task when this rule is active is to modify documentation and planning files, specifically those with the `.md` extension.
+3.  **Focus on Planning:** Engage in activities like outlining steps, refining requirements, documenting decisions, and updating planning documents.
+4.  **Clarify if Unsure:** If a request seems to involve code changes, clarify with the user if the "plan" rule is still intended to be active or if the objective has shifted to implementation.

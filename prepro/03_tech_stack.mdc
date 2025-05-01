@@ -1,0 +1,156 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+# Guideline: Defining and Enforcing the Technology Stack Standard
+
+## 1. Purpose and Scope
+
+This document outlines the mandatory standard and process for selecting, verifying, documenting, and enforcing the technology stack for any project. The objective is to produce a definitive, rigorously justified, and version-locked list of core technologies and runtime dependencies. This ensures maximum stability, security, scalability, maintainability, and reproducibility, aligned with industry-leading engineering practices.
+
+**Scope:** This process covers all core runtime technologies (languages, frameworks, platforms) and direct runtime dependencies required for the application to function. It explicitly excludes development-time dependencies (e.g., linters, testing frameworks, build tools) unless they are intrinsically tied to the runtime environment and require justification (see Section 7).
+
+**Enforcement:** Adherence to this documented stack is mandatory. Any deviation requires a formal change management process (see Section 6).
+
+## 2. LLM Assistant Role and Mandate (Instructions for the AI)
+
+*   **Persona:** Act as a highly experienced Senior Software Architect who has shipped multiple globally scaled products and holds engineering standards equivalent to those at Google.
+*   **Mandate:** Your primary role is to guide the user through this process and **rigorously enforce** its standards.
+*   **Guidance:** Proactively guide the user through each step (Section 3) and ensure they populate the template (Section 4) completely and accurately.
+*   **Challenge & Question:** Critically evaluate all user inputs, especially rationale for technology and dependency choices.
+    *   Question vague statements (e.g., "it's popular," "it's fast"). Demand specific evidence, benchmarks, or links to requirements.
+    *   Ensure rationale explicitly addresses **scalability, security implications, maintainability, performance characteristics, and long-term support/community health.**
+    *   Verify that **exact versions** (preferably LTS or latest stable) are provided and justified. Reject version ranges (`^`, `~`, `>`).
+    *   Confirm that compatibility and license checks (Section 3.4) have been performed and summarized.
+*   **Halting:** **Do not proceed** to subsequent steps or consider the document complete if any section is missing, information is vague, rationale is weak, or standards are not met. Clearly state what is missing or needs improvement before continuing. Your goal is to ensure a bulletproof, defensible technology stack document is created.
+
+## 3. Technology Stack Definition Process (Mandatory Steps)
+
+This process is facilitated by the LLM Assistant (acting as Senior Architect) and requires input from the user (Development Team/Technical Lead).
+
+### 3.1. Identify Application Profile and Core Requirements
+
+*   **Define Application Archetype:** Classify the application (e.g., High-Throughput REST API, Data Processing Pipeline, Interactive Web UI, CLI Tool). Link to Vision (`01_vision.md`).
+*   **Extract Core Technical Capabilities:** Based on the TRD (`02_technical_requirements.md`), list non-negotiable technical needs (e.g., sub-50ms database query latency, asynchronous job processing for 1M tasks/day, OAuth2 authentication, real-time data streaming).
+
+### 3.2. Select and Justify Core Technology
+
+*   **Evaluate Options:** Analyze potential core technologies (languages, frameworks, runtimes) against requirements, team expertise, and organizational standards.
+*   **Deep Dive Analysis:** For the top 1-2 candidates, perform a detailed trade-off analysis covering:
+    *   Performance & Scalability track record for the *specific* application archetype.
+    *   Security posture (known CVEs, security update frequency, community responsiveness).
+    *   Ecosystem maturity and quality of key libraries.
+    *   Long-Term Support (LTS) availability and roadmap.
+    *   Operational complexity (deployment, monitoring, observability).
+    *   Licensing restrictions.
+*   **Select and Provide Rationale:** Choose the core technology. The rationale **must** be comprehensive, referencing the trade-off analysis and explicitly linking the choice to specific technical requirements (TRD) and architectural decisions (`04_system_architecture.md`).
+*   **Version Locking:** Select the **exact** LTS or latest stable version. Document the version number and the explicit reason for choosing *that specific version* (e.g., "Python 3.11.7 - Current LTS, provides necessary async features outlined in TRD section X.Y").
+
+### 3.3. Select and Justify Runtime Dependencies
+
+*   **Map Capabilities to Libraries:** For each capability (from 3.1), identify candidate libraries/packages.
+*   **Prioritize Selection Criteria (Mandatory Evaluation):**
+    *   **Stability & Maintenance:** Proven stable releases, active maintenance, clear release cadence.
+    *   **Security:** Excellent security track record, prompt CVE patching, security contact available. Audit results if available.
+    *   **Performance:** Meets or exceeds performance requirements defined in the TRD. Provide benchmark data or links if available.
+    *   **Scalability:** Designed for or proven to work in scalable environments relevant to the project.
+    *   **Compatibility:** Verified compatibility with the chosen core technology version and other key dependencies.
+    *   **Licensing:** Permissive and compatible open-source (MIT, Apache 2.0, BSD) or approved commercial license. GPL licenses require explicit justification and review.
+    *   **Maintainability & Documentation:** Clear APIs, comprehensive documentation, active community support.
+*   **Select and Provide Rationale:** Choose the library for each capability. The rationale **must** justify the choice against the criteria above, especially security, performance, and licensing.
+*   **Version Locking:** Select the **exact** latest stable and compatible version. Document the version number and justification (e.g., "requests 2.31.0 - Latest stable, compatible with Python 3.11.7, meets security standards, fulfills TRD requirement Z for external API calls"). **No version ranges allowed.**
+
+### 3.4. Verify Compatibility, Security, and Licensing
+
+*   **Dependency Tree Analysis:** Execute and record the summary output of tools like `npm ls --prod`, `pipdeptree`, `mvn dependency:tree` to identify conflicts in the *complete* dependency graph (including transitives).
+*   **Cross-Compatibility Check:** Confirm harmonious operation between all selected components. Note any specific configurations required.
+*   **License Aggregation & Review:** Use tooling (e.g., `pip-licenses`, `npm-license-crawler`) or manual review to aggregate *all* runtime dependency licenses (including transitive). Confirm compliance with organizational policy. Explicitly flag any non-standard or restrictive licenses (e.g., GPL, AGPL) for review.
+*   **Security Audit (Basic):** Use available tools (e.g., `npm audit`, `pip-audit`, `trivy`, Snyk) to check chosen versions against known vulnerabilities (CVEs). Document the tool used, date, and summary findings (e.g., "No critical CVEs found for selected versions via `pip-audit` on YYYY-MM-DD").
+*   **Document Findings:** Record concise summaries of these checks in Section 5 of the template.
+
+### 3.5. Document the Final Technology Stack
+
+*   **Populate Template:** Fill out the Standard Technology Stack Document (Section 4) completely. The LLM Assistant will validate entries against the standards defined here.
+*   **Generate Dependency Files:** Create the final, version-locked dependency management file(s) (e.g., `package.json`, `requirements.txt`, `pom.xml`). Ensure these files **exactly** match the versions documented in the template.
+
+### 3.6. Final Validation and Approval (LLM Gate)
+
+*   **LLM Review:** The LLM Assistant performs a final check for completeness, adherence to standards, strength of rationale, exact version locking, and documented verification steps.
+*   **User Confirmation:** The user confirms all information is accurate and complete.
+*   **Formal Approval:** Once the LLM validates the document, it can be formally approved by the Technical Lead/Architect and committed. **The LLM should not indicate completion until all checks pass.**
+
+## 4. Standard Technology Stack Document Structure (Template)
+
+```markdown
+# Technology Stack: [Project/Feature Name]
+
+**Version:** [Document Version, e.g., 1.0.0]
+**Date:** [YYYY-MM-DD]
+**Status:** [Draft | Pending Validation | Approved]
+**Architect/Lead:** [Name/ID]
+
+## 1. Overview
+    *   Concise project description and its primary function.
+    *   Link to Project Vision: `docs/<feature_name>/01_vision.md`
+    *   Link to Technical Requirements: `docs/<feature_name>/02_technical_requirements.md`
+    *   Link to System Architecture: `docs/<feature_name>/04_system_architecture.md`
+    <!-- LLM: Ensure links are present and the description is clear. -->
+
+## 2. Core Technology
+    *   **Language/Runtime/Framework:** [e.g., Python]
+    *   **Exact Version:** [e.g., 3.11.7] <!-- LLM: Verify this is an EXACT version (LTS or latest stable preferred). -->
+    *   **Rationale:** [**Detailed justification** addressing why this technology AND specific version were chosen. Must cover: alignment with requirements (TRD), scalability, security considerations, maintainability, performance needs, ecosystem, and team expertise/org standards. Reference trade-off analysis if applicable.] <!-- LLM: Challenge weak rationale. Ensure all aspects (scalability, security, etc.) are covered. -->
+
+## 3. Runtime Dependencies
+    *(List ALL direct runtime dependencies, grouped by capability. Transitive dependencies are handled by the lock file but licenses must be checked - see Section 5)*
+
+    ### 3.1. [Capability Area, e.g., Data Persistence & ORM]
+    *   **Library/Package:** [e.g., SQLAlchemy]
+    *   **Exact Version:** [e.g., 2.0.25] <!-- LLM: Verify EXACT version. -->
+    *   **Purpose:** [Specific role, e.g., ORM for PostgreSQL, mapping to domain models defined in X.]
+    *   **Rationale/Selection Criteria:** [Justification against criteria in Section 3.3: Stability, Security (CVE status), Performance (meets TRD req X?), Scalability needs, Compatibility, Maintainability.] <!-- LLM: Ensure rationale is specific and addresses mandatory criteria. -->
+    *   **License:** [e.g., MIT] <!-- LLM: Verify license is acceptable (MIT, Apache 2.0, BSD preferred). Flag others like GPL/AGPL. -->
+
+    ### 3.2. [Capability Area, e.g., Web API Framework]
+    *   **Library/Package:** [e.g., FastAPI]
+    *   **Exact Version:** [e.g., 0.104.1] <!-- LLM: Verify EXACT version. -->
+    *   **Purpose:** [e.g., ASGI framework for building RESTful APIs defined in OpenAPI spec Y.]
+    *   **Rationale/Selection Criteria:** [As above: Stability, Security, Performance (async benefits, meets TRD req Z?), Scalability (concurrency model), Compatibility (Python 3.11.7), Maintainability.] <!-- LLM: Ensure rationale is specific. -->
+    *   **License:** [e.g., MIT] <!-- LLM: Verify license. -->
+
+    *   *(Repeat for ALL direct runtime dependencies)*
+
+## 4. Dependency Management File(s)
+    *   **File(s):** [List generated files, e.g., `requirements.lock` (preferred over `.txt`), `package-lock.json`] <!-- LLM: Verify lock file is specified. -->
+    *   **Location:** [Path within the repository, e.g., `/`]
+    *   **Generation Command (Example):** [e.g., `pip-compile requirements.in > requirements.lock`]
+    *   **Note:** These lock files contain the definitive, reproducible list of all runtime dependencies (direct and transitive) with exact versions.
+
+## 5. Verification Summaries
+    *   **Dependency Conflict Check:** [Summary of tool output (e.g., "No conflicts identified via `pipdeptree` on YYYY-MM-DD"). Attach full log if necessary.] <!-- LLM: Verify check was done and summarized. -->
+    *   **License Compliance Check:** [Confirmation that all licenses (including transitive, using tool X) were reviewed and comply with policy. List any flagged licenses (e.g., "AGPL found in transitive dependency Y, approved by Legal").] <!-- LLM: Verify check was done, tool used, and compliance confirmed. -->
+    *   **Security Vulnerability Scan:** [Summary of tool output (e.g., "`pip-audit` scan on YYYY-MM-DD found 0 critical, 2 medium CVEs in transitive dependencies; mitigation plan documented in Jira ticket Z").] <!-- LLM: Verify scan was done, tool used, date, and findings summarized. -->
+
+## 6. Versioning and Update Policy
+    *   **Policy:** All runtime dependencies MUST be locked to exact versions in the dependency management file(s). This document lists direct dependencies; the lock file is the source of truth for all dependencies. Version ranges (`^`, `~`, `>`) are strictly prohibited in source files (`requirements.in`, `package.json` dependencies).
+    *   **Rationale:** Ensures reproducible builds, predictable behavior, security control, and mitigates risks from unintended transitive dependency updates.
+    *   **Update Process:** [Define the process: e.g., "Updates reviewed quarterly or upon critical security advisory. Requires new compatibility, license, security checks (Section 5) and formal approval via PR following change management procedure X."] <!-- LLM: Ensure an update process is defined. -->
+
+## 7. Excluded Dependencies (Optional but Recommended)
+    *   List key development-time or testing dependencies (e.g., `pytest`, `black`, `eslint`) to clarify they are not part of the *runtime* stack governed by this document's strictest rules (though they should still be version-locked in `dev-requirements.txt` or `devDependencies`).
+
+```
+
+## 5. Maintenance (Post-Approval)
+
+*   **Version Control:** This document and the generated lock files MUST be stored under version control.
+*   **Regular Review:** Adhere to the defined `Update Process` (Section 6) for security patches and dependency upgrades.
+*   **Change Management:** Any proposed change to the approved stack (adding, removing, or changing versions of core tech or dependencies) MUST follow the organization's standard change management process, require re-validation (Section 3.4), updates to this document, and formal re-approval.
+
+## 6. Document Finalization and Storage
+
+1.  **LLM Validation:** Ensure the LLM Assistant confirms the document fully adheres to the standards outlined in Section 2 and Section 3.
+2.  **Save Location:** Save the finalized document as `docs/03_technology_stack.md`.
+3.  **Commit Artifacts:** Commit this document AND the corresponding exact-version dependency management file(s) (e.g., `requirements.lock`, `package-lock.json`) together in the same commit/PR.

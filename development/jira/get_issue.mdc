@@ -1,0 +1,71 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Getting Jira Issue Details
+
+## Process for Getting Issue Details
+
+1. **First, fetch the Jira core rule**:
+   Use the `fetch_rules` tool to get the core Jira rule:
+   
+   ```
+   fetch_rules(
+     rule_names=["saaga-rules/development/jira/core"]
+   )
+   ```
+   
+   This provides essential Jira configuration such as project spaces and transition IDs.
+
+2. **Check repository status**:
+   Use the `mcp_git_git_status` tool with repo_path parameter to check the current branch and if there are any uncommitted changes:
+   
+   ```
+   mcp_git_git_status(
+     repo_path="/path/to/repo"
+   )
+   ```
+   
+   This provides context about what branch the user is currently on and if they have any work in progress. The Jira Issue is in the branch name.
+
+3. **Use the Jira MCP tool jira_get_issue** to fetch the issue details:
+   
+   ```
+   mcp_mcp-atlassian_jira_get_issue(
+     issue_key="<YY>-<xxx>"
+   )
+   ```
+
+4. **Display a comprehensive summary** of the issue information:
+   - Issue key and summary
+   - Current status
+   - Description (formatted)
+   - Assignee and reporter
+   - Created and updated dates
+   - Priority
+   - Any linked issues or dependencies
+   
+   Format this information clearly to make it easy for the user to understand the issue context.
+
+5. **Relate issue to current branch** (optional):
+   If the current git branch name contains the issue key, point this out to the user:
+   "You're currently on a branch related to this issue: <branch-name>"
+   
+   If not, you can mention: "You're not currently on a branch specifically for this issue."
+
+## Important Notes
+
+- Always fetch the latest issue information to ensure you have the most current data
+- Show the git status first to give the user context about their current work state
+- Format the issue description for better readability
+- Highlight any dependencies or blocking issues
+- ONLY use the MCP Jira tools for interacting with Jira (fetching issue details)
+
+## Example Complete Workflow
+
+When fetching issue details:
+1. Fetch core Jira rule with fetch_rules
+2. Check repository status with mcp_git_git_status
+3. Fetch issue details with mcp_mcp-atlassian_jira_get_issue
+4. Display formatted issue summary with related git context

@@ -1,0 +1,7 @@
+---
+description: Once before any mcp_git tool is run. Only call once for the first mcp_git tool called in the conversation history.
+globs: 
+alwaysApply: false
+---
+Never pass "." to git tools, pass relative paths or full paths like
+/Users/andrew/saga/videos

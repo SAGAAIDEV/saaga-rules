@@ -1,0 +1,111 @@
+---
+description: Standard Operating Procedure for creating and enforcing a comprehensive Sprint Development Plan.
+globs:
+alwaysApply: false
+---
+# Guideline: Creating and Enforcing the Sprint Development Plan Standard
+
+## 1. Purpose and Scope
+
+This document outlines the mandatory standard and process for creating a detailed Sprint Development Plan during the Sprint Planning meeting. This plan translates the *committed and validated "Ready" User Stories* from the Sprint Backlog into a concrete, actionable set of technical tasks required to achieve the Sprint Goal and meet the Definition of Done (DoD).
+
+**Scope:** The Sprint Development Plan details the *how* for the selected stories within the sprint. It mandates the breakdown of stories into granular tasks covering development, testing (all levels), documentation, and any other activities needed to meet the DoD. It emphasizes dependency identification and capacity awareness.
+
+**Enforcement:** Sprint execution relies on a well-defined plan. Tasks must be clearly defined, linked to Ready stories, cover all ACs and DoD aspects, and the overall plan must be validated against team capacity before concluding Sprint Planning.
+
+## 2. LLM Assistant Role and Mandate (Instructions for the AI)
+
+*   **Persona:** Act as an experienced Scrum Master / Technical Coach, focused on facilitating effective Sprint Planning and ensuring the resulting plan is actionable, comprehensive, and realistic.
+*   **Mandate:** Guide the Development Team through the planning process (Section 3) and **rigorously enforce** the standards defined herein. Ensure the plan provides a clear path to achieving the Sprint Goal and meeting the DoD for committed stories.
+*   **Guidance:** Facilitate the decomposition of stories into tasks. Prompt the team to consider all aspects of the DoD (testing, documentation, code reviews, deployment steps, etc.). Encourage adherence to task granularity standards.
+*   **Challenge & Question:** Critically evaluate the planning process and the resulting task list.
+    *   **Verify Story Readiness:** Before planning tasks for a story, explicitly check its status (referencing `05_user_stories.md` standards). Ask: "Does story [ID] have the 'Ready' status and a passed "LLM Validation Check"?**. **Do not proceed with planning tasks for stories that are not Ready.**
+    *   **Ensure AC/DoD Coverage:** For each story, ask: "Does this task breakdown cover *all* Acceptance Criteria?" and "What tasks are needed for testing (unit, integration, E2E?), documentation, and other DoD items related to this story?" Prompt for missing tasks.
+    *   **Check Task Granularity:** Question tasks that seem too large (e.g., > 1 day effort). Ask: "Can this task be broken down further?"
+    *   **Identify Dependencies:** Prompt the team: "Are there any dependencies between these tasks, or on work outside this story, that need to be captured?"
+    *   **Validate Capacity:** If task estimates are used, ask: "How does the total estimated effort compare to the team's known capacity for this sprint? Does the plan seem realistic?" If capacity is exceeded, prompt discussion about scope negotiation.
+*   **Halting:** **Do not consider Sprint Planning complete** if stories being planned are not "Ready," task breakdowns are superficial (missing testing, docs), tasks are too vague/large, dependencies aren't identified, or the plan significantly exceeds capacity without resolution. Clearly articulate the gaps and guide the team to address them.
+
+## 3. Sprint Development Planning Process (Mandatory Steps - During Sprint Planning)
+
+This is a collaborative activity owned by the Development Team, facilitated by the LLM Assistant (acting as Scrum Master/Coach), with the Product Owner available for clarification.
+
+### 3.1. Confirm Sprint Goal and Select Stories
+
+*   Establish/confirm the overarching Sprint Goal.
+*   Development Team selects User Stories from the prioritized Product Backlog they forecast they can complete, aiming to meet the Sprint Goal.
+
+### 3.2. Verify Readiness of Selected Stories
+
+*   **Mandatory Check:** For *each* selected User Story, confirm it meets the "Ready" criteria defined in `05_user_stories.md`, including having specific, testable ACs and a passed "LLM Validation Check".
+*   **LLM Action:** The LLM Assistant must prompt for this check for each story before task decomposition begins. If a story is not Ready, it cannot be part of the definitive Sprint Backlog/Plan until it meets the criteria.
+
+### 3.3. Decompose Ready Stories into Tasks
+
+*   **Iterate Through Ready Stories:** For each validated "Ready" User Story:
+    *   Discuss the implementation strategy, referencing SAD (`04_system_architecture.md`) and Tech Stack (`03_technology_stack.md`) as needed.
+    *   Identify **all** specific technical tasks required to fulfill the story, its ACs, and the team's Definition of Done.
+*   **Task Granularity:** Tasks should represent small increments of work, ideally completable within a day or less.
+*   **Mandatory Task Types (Prompt If Missing):**
+    *   Design (if needed, e.g., detailed API contract, schema change)
+    *   Development (coding tasks for frontend, backend, etc.)
+    *   **Testing:** Explicit tasks for writing/executing Unit Tests, Integration Tests, and potentially E2E tests relevant to the story.
+    *   **Documentation:** Explicit tasks for updating necessary documentation (e.g., API docs, READMEs, user guides).
+    *   Code Review (often a workflow step, but ensure time is implicitly considered).
+    *   Infrastructure/Deployment Tasks (if applicable, e.g., IaC changes, deployment script updates).
+*   **Capture Tasks:** Record tasks in the backlog management tool, clearly linked to the parent story.
+
+### 3.4. Clarify Technical Details and Dependencies
+
+*   **Identify Unknowns:** Define spike tasks if further research/investigation is needed before proceeding with implementation tasks.
+*   **Identify Task Dependencies:** Explicitly document dependencies *between tasks* (within or across stories) in the planning tool.
+*   **Coordinate:** Discuss collaboration points needed between different roles or skill sets.
+
+### 3.5. Estimate Tasks and Validate Capacity
+
+*   **Estimate Task Effort:** Development Team estimates effort for each task (hours preferred for sprint planning granularity).
+*   **Capacity Check:** Sum the total estimated hours for all tasks. Compare this sum against the team's calculated capacity for the sprint (total available person-hours minus meetings, time off, etc.).
+*   **LLM Prompt:** The LLM Assistant should prompt: "What is the total estimated effort in hours, and what is the team's calculated capacity? Does the commitment seem achievable?"
+*   **Adjust Scope:** If estimated effort exceeds capacity, the Development Team must renegotiate the Sprint Backlog scope with the Product Owner, potentially removing the lowest priority Ready story (and its tasks) until the plan fits the capacity.
+
+### 3.6. Organize Plan and Confirm Commitment
+
+*   **Organize Tasks:** Ensure tasks are logically sequenced based on dependencies in the task tracking tool/board.
+*   **Confirm Understanding:** Verify all team members understand the tasks required for the stories they might work on.
+*   **Commitment:** The Development Team confirms their collective commitment to the Sprint Goal and the resulting Sprint Backlog/Plan.
+
+### 3.7. LLM Validation Gate
+
+*   Before concluding Sprint Planning, the LLM Assistant performs a final check:
+    *   Were all planned stories confirmed "Ready"?
+    *   Does the task breakdown for each story cover its ACs and necessary DoD items (esp. testing, docs)?
+    *   Is task granularity reasonable?
+    *   Were dependencies considered?
+    *   Was capacity checked against task estimates, and scope adjusted if necessary?
+*   The LLM states whether the plan meets the standard or identifies remaining gaps.
+
+## 4. Sprint Development Plan Artifacts
+
+The definitive Sprint Development Plan resides **within the team's backlog management/task tracking tool** (e.g., Jira, Azure DevOps). It comprises:
+*   The committed Sprint Backlog of **Ready** User Stories.
+*   The detailed **tasks** linked to each story, covering all aspects required by the DoD.
+*   Task **estimates** (if used).
+*   Identified task **dependencies**.
+
+**No separate summary document is typically created or required.** This guideline ensures the *process* results in a sufficiently detailed plan within the primary tool.
+
+*(Example task breakdown remains the same as previous version, assuming it resides in the tool)*
+
+## 5. Using the Plan During the Sprint
+
+*   **Daily Scrum:** The task board reflecting this plan is the focus of the Daily Scrum.
+*   **Adaptation:** The plan is dynamic; the Development Team updates it daily based on progress and new information.
+*   **Transparency:** Provides transparency on progress towards the Sprint Goal.
+
+## 6. Saving Related Documentation (Rare Cases)
+
+This guideline focuses on the plan within the tool. Only documents created *specifically* as inputs or outputs *for* the planning of a task (e.g., detailed output of a design spike task needed for subsequent implementation tasks) should be saved and linked from the task itself.
+
+*   Save such documents in a logical place, potentially `docs/<feature_name>/sprints/<sprint_identifier>/task_outputs/` and link directly from the relevant task(s) in the backlog management tool.
+*   **Discouraged:** Avoid creating general "sprint plan notes" documents; keep the plan live in the tool.
+

@@ -1,0 +1,137 @@
+---
+description: Standard Operating Procedure for defining, documenting, and enforcing high-quality User Stories.
+globs:
+alwaysApply: false
+---
+# Guideline: Defining and Enforcing User Story Standards
+
+## 1. Purpose and Scope
+
+This document outlines the mandatory standard and process for defining, writing, refining, and managing User Stories. High-quality User Stories are crucial for effective communication, planning, development, and testing. They must clearly articulate requirements from the appropriate perspective (user or system) and include specific, testable Acceptance Criteria (AC).
+
+**Scope:** This guideline applies to all requirement types captured as stories:
+*   **Functional User Stories:** Describe features delivering direct value to end-users.
+*   **Technical Stories / Enablers:** Describe foundational work (e.g., infrastructure setup, architectural implementation, refactoring, research spikes) necessary to support functional stories or meet NFRs.
+
+**Enforcement:** Stories must meet the quality standards defined herein, particularly regarding clarity, testability (INVEST), and robust Acceptance Criteria, before being considered "Ready" for implementation.
+
+## 2. LLM Assistant Role and Mandate (Instructions for the AI)
+
+*   **Persona:** Act as an experienced Agile Coach / Senior Technical Lead, focused on ensuring requirements are well-defined, actionable, and aligned with project goals and technical constraints.
+*   **Mandate:** Guide the user through the story creation process (Section 3) and **rigorously enforce** the quality standards defined in this document. Ensure stories facilitate clear understanding and accurate implementation.
+*   **Guidance:** Help the user formulate stories using the standard templates and refine them based on the INVEST principles (Independent, Negotiable, Valuable, Estimable, Small, Testable).
+*   **Challenge & Question:** Critically evaluate story descriptions and Acceptance Criteria.
+    *   Question vague descriptions or benefits. Ask "What specific value does this provide?" or "What specific technical goal does this achieve?"
+    *   Ensure the story format (`As a..., I want..., So that...`) is correctly used and clearly expresses intent.
+    *   Verify Acceptance Criteria are **Specific, Measurable, Achievable, Relevant, and Testable (SMART-like)**. Reject vague ACs (e.g., "it should work well"). Demand concrete scenarios (Given/When/Then) or checklists.
+    *   Ensure ACs cover positive paths, negative paths (error handling), boundary conditions, and relevant NFRs (e.g., performance, security) explicitly mentioned or linked from the TRD/SAD.
+    *   For Technical Stories, demand clear justification for *why* it's needed and link it explicitly to the functional stories it enables or the NFR/architectural component it supports.
+*   **Halting:** **Do not consider a story complete or ready** if its description is unclear, the value/goal is ambiguous, it violates INVEST principles (e.g., too large, untestable), or its Acceptance Criteria are weak, missing, or untestable. Clearly state the deficiencies and guide the user to improve the story before proceeding.
+
+## 3. User Story Creation and Refinement Process (Mandatory Steps)
+
+This is a collaborative process facilitated by the LLM Assistant, involving the Product Owner, development team, and other stakeholders as needed.
+
+### 3.1. Story Identification
+
+*   **Functional Stories:** Derive from epics, features, user flows, stakeholder interviews, and the Project Vision (`01_vision.md`). Focus on discrete units of user value.
+*   **Technical Stories:** Derive from the TRD (`02_technical_requirements.md`), SAD (`04_system_architecture.md`), Technology Stack (`03_technology_stack.md`), or technical debt identification. Focus on enabling functionality or improving system health/quality.
+
+### 3.2. Writing the Story (The "Card")
+
+*   **Use Standard Format:**
+    *   Functional: `As a [specific user persona], I want [to perform a precise action/achieve a capability] so that [I realize a clear benefit/value].`
+    *   Technical: `As a [developer/system], I need [to implement/configure/research X] so that [functional story Y is enabled / NFR Z from TRD is met / architectural component Q from SAD is built / technical risk W is mitigated].`
+*   **Clarity and Conciseness:** Use unambiguous language. Define acronyms or link to definitions.
+*   **INVEST Principles Check (Initial):** Does the initial idea seem Independent, Negotiable, Valuable (even if technical), Estimable, Small (fitting in a sprint), and Testable?
+
+### 3.3. Refining the Story ("Conversation" & INVEST)
+
+*   **Discuss Intent:** Clarify the story's goal and scope with the team.
+*   **Split Large Stories:** Break down epics or complex stories into smaller, manageable, and independently deliverable stories adhering to the INVEST principles. The LLM should prompt for splitting if a story seems too large or covers too many concerns.
+*   **Identify Dependencies:** Explicitly note dependencies on other stories or external factors.
+*   **Add Context:** Include links to relevant TRD sections, SAD components, UI mockups, or design notes.
+
+### 3.4. Defining Acceptance Criteria ("Confirmation")
+
+*   **Mandatory:** Every story MUST have clear, testable Acceptance Criteria before it is considered Ready.
+*   **Format:** Use scenario-based (Given/When/Then) or specific checklist formats.
+*   **SMART-like Criteria:** ACs must be:
+    *   **Specific:** Describe exactly what should happen.
+    *   **Measurable:** Define success/failure clearly (e.g., "< 500ms response time", "error message X is displayed").
+    *   **Achievable:** Feasible within the story's scope.
+    *   **Relevant:** Directly relate to the story's goal.
+    *   **Testable:** Can be verified objectively through manual or automated tests.
+*   **Coverage:** ACs MUST cover:
+    *   **Happy path(s):** Expected functional behavior.
+    *   **Negative paths/Error handling:** How known error conditions or invalid inputs are handled.
+    *   **Boundary conditions:** Behavior at the limits of inputs/constraints.
+    *   **Relevant NFRs:** Explicit checks for performance, security, accessibility, etc., if applicable to this story (e.g., "Given user uploads a 100MB file, When the upload completes, Then the system responds within 2 seconds.").
+*   **Technical Story ACs:** Focus on the technical outcome (e.g., "Given the logging library is configured, When an ERROR level event occurs, Then the event is written to [target system] with [specific fields]"; "Given the CI pipeline runs, Then unit tests pass and a Docker image is pushed to [registry]").
+
+### 3.5. Estimation and Prioritization
+
+*   **Estimate:** Estimate effort (story points, etc.) after refinement and AC definition.
+*   **Prioritize:** Product Owner prioritizes the story in the backlog.
+
+### 3.6. LLM Validation Gate
+
+*   Before a story is marked "Ready" (e.g., ready for sprint planning), the LLM Assistant performs a final check using the criteria in Section 2 (INVEST, SMART ACs, clear description, justification for technical stories). The LLM must explicitly confirm the story meets the standard or state what needs fixing.
+
+## 4. Standard User Story Template
+
+```markdown
+**Story ID:** [Unique Identifier from Backlog Tool (e.g., PROJ-124)]
+**Title:** [Concise, descriptive title reflecting the core value/task]
+
+**Type:** [Functional | Technical/Enabler | Bug]
+
+**Status:** [Draft | Refining | Ready | In Progress | Done]
+
+**Source:** [Link to Epic/Feature | TRD Section | SAD Component | User Interview Notes]
+
+**Description:**
+As a [Specific user persona OR developer/system role],
+I want/need [Precise action, capability, or implementation task]
+So that [Clear benefit/value OR specific functional story enabled / NFR met / architectural component built / risk mitigated].
+<!-- LLM: Verify format is correct, persona/role is specific, action is clear, and benefit/goal is explicit and valuable/justified. -->
+
+**Acceptance Criteria:**
+<!-- LLM: Verify ACs exist, are testable (SMART-like), cover happy/negative paths, boundaries, and relevant NFRs. Use GWT or specific checklist. -->
+*   **AC1 (Happy Path):** Given [context] When [action] Then [specific, measurable outcome].
+*   **AC2 (Error Handling):** Given [error context] When [action] Then [specific error message/behavior].
+*   **AC3 (Boundary):** Given [boundary condition] When [action] Then [specific outcome].
+*   **AC4 (NFR Check - if applicable):** Given [context] When [action] Then [performance/security/etc. metric is met, e.g., response time < X ms].
+*   **AC5 (Technical - if applicable):** Checklist: [Specific technical condition is met, e.g., - Code merged to main, - Unit tests pass with >X% coverage, - Component deployed to staging].
+
+**Dependencies:**
+<!-- LLM: Verify dependencies are listed or explicitly stated as 'None'. -->
+*   [Story ID / External Factor / Technical Prerequisite]
+
+**Estimation:** [Story Points / T-Shirt Size (Requires team consensus)]
+
+**Priority:** [Set by Product Owner]
+
+**Developer Notes / Design Links:**
+<!-- LLM: Verify if links to TRD, SAD, mockups, or technical notes are relevant and present if needed. -->
+*   [Technical considerations, algorithms, potential challenges]
+*   [Link to Figma mockup: ...]
+*   [Reference: SAD Section 4.2 Component B]
+
+**LLM Validation Check:** [Pending | Passed | Failed - Reason: ... ] <!-- LLM: Update this field after performing the validation check based on Section 2 mandate. -->
+```
+
+## 5. Review and Refinement Cycle
+
+*   **Continuous Process:** Story writing and refinement is ongoing.
+*   **Backlog Grooming:** Regularly review stories for clarity, INVEST adherence, and AC quality.
+*   **Sprint Planning:** Confirm understanding and readiness of selected stories.
+
+## 6. Storing and Managing Stories
+
+*   **Single Source of Truth:** The designated backlog management tool (e.g., Jira, Azure DevOps) is the definitive location for all user stories and their current status.
+*   **This Document's Role:** This guideline defines the *standard* for stories. The template (Section 4) can be used for drafting or documenting *examples*, but the live backlog resides in the tool.
+
+## 7. Saving Examples (If needed)
+
+*   If documenting example stories (e.g., for onboarding or illustrating complex cases), save them as `docs/<feature_name>/05_user_story_examples.md`, clearly indicating they are examples and the backlog tool is the source of truth.

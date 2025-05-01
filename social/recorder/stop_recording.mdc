@@ -1,0 +1,7 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+1. Use the mcp tool list active recordings.
+2. Use the mcp tool stop record on the active recording.
