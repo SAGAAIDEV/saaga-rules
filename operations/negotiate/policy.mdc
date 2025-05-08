@@ -1,0 +1,153 @@
+---
+description:
+globs:
+alwaysApply: false
+---
+# Negotiation System Guide
+
+## Database Structure Overview
+
+The database consists of several interconnected tables for tracking negotiations with law firms:
+
+1. `legal_service_providers` - Contains law firm information
+2. `negotiation_objectives` - Stores our negotiation goals
+3. `counterparty_interests` - Records what we believe counterparties want
+4. `negotiations` - Tracks specific negotiation instances with law firms
+5. `negotiation_objective_assignments` - Links objectives to negotiations
+6. `counterparty_interest_assignments` - Links interests to negotiations
+7. `negotiation_history` - Records communication history
+
+## Common Database Operations
+
+### Get All Active Negotiation Objectives
+```sql
+SELECT objective_id, title, description, priority 
+FROM negotiation_objectives 
+WHERE is_active = 1 
+ORDER BY priority DESC;
+```
+
+### View Current Negotiations
+```sql
+SELECT n.negotiation_id, lsp.firm_name, n.title, n.status, n.start_date
+FROM negotiations n
+JOIN legal_service_providers lsp ON n.provider_id = lsp.provider_id
+ORDER BY n.start_date DESC;
+```
+
+### View Objectives for a Specific Negotiation
+```sql
+SELECT no.title, noa.current_status, noa.importance_level
+FROM negotiation_objectives no
+JOIN negotiation_objective_assignments noa ON no.objective_id = noa.objective_id
+WHERE noa.negotiation_id = [NEGOTIATION_ID];
+```
+
+### Add Communication History
+```sql
+INSERT INTO negotiation_history 
+(negotiation_id, event_date, event_type, description, key_outcomes, next_steps)
+VALUES 
+([NEGOTIATION_ID], datetime('now'), [EVENT_TYPE], [DESCRIPTION], [OUTCOMES], [NEXT_STEPS]);
+```
+
+### Update Negotiation Status
+```sql
+UPDATE negotiations 
+SET status = [NEW_STATUS], notes = [NOTES], modified_at = CURRENT_TIMESTAMP
+WHERE negotiation_id = [NEGOTIATION_ID];
+```
+
+### Update Objective Status in a Negotiation
+```sql
+UPDATE negotiation_objective_assignments
+SET current_status = [NEW_STATUS], notes = [NOTES], modified_at = CURRENT_TIMESTAMP
+WHERE negotiation_id = [NEGOTIATION_ID] AND objective_id = [OBJECTIVE_ID];
+```
+
+## Email Management Workflow
+
+### 1. Sending Negotiation Emails
+
+When sending a negotiation email:
+1. Identify which negotiation objective(s) the email addresses
+2. Draft the email with clear reference to those objectives
+3. Send using the appropriate mcp_gmail_send_email function
+4. Label the email with the relevant negotiation label
+5. Update the negotiation history in the database
+
+Example:
+```
+// Send email
+mcp_gmail_send_email({
+  to: ["contact@lawfirm.com"],
+  subject: "AI Startup Legal Partnership - Bitcoin Payment",
+  body: "..."
+});
+
+// Add to negotiation history
+INSERT INTO negotiation_history (
+  negotiation_id, event_date, event_type, description
+) VALUES (
+  1, datetime('now'), 'Email', 'Sent initial outreach regarding Bitcoin acceptance'
+);
+```
+
+### 2. Labeling Emails with Goals
+
+1. Create a Gmail label for each primary negotiation:
+```
+mcp_gmail_create_label({ name: "negotiating bitcoin acceptance" });
+```
+
+2. Apply the label to all related emails:
+```
+mcp_gmail_modify_email({
+  messageId: "EMAIL_ID",
+  addLabelIds: ["LABEL_ID"]
+});
+```
+
+3. To find all emails related to a specific negotiation:
+```
+mcp_gmail_search_emails({
+  query: "label:negotiating-bitcoin-acceptance"
+});
+```
+
+### 3. Updating Database After Email Communication
+
+After sending or receiving an email:
+1. Update the negotiation history
+2. Update the status of relevant objectives
+3. Record any new information about counterparty interests
+
+Example after receiving a response:
+```sql
+-- Add communication to history
+INSERT INTO negotiation_history (
+  negotiation_id, event_date, event_type, description, key_outcomes
+) VALUES (
+  1, datetime('now'), 'Email Received', 'Response from law firm regarding Bitcoin payment', 
+  'Expressed interest but concerns about volatility'
+);
+
+-- Update negotiation objective status
+UPDATE negotiation_objective_assignments
+SET current_status = 'In Discussion', 
+    notes = 'Firm expressed interest with reservations about volatility'
+WHERE negotiation_id = 1 AND objective_id = 1;
+
+-- Record new counterparty interest if identified
+INSERT INTO counterparty_interests (title, description, importance)
+VALUES ('Concern about cryptocurrency volatility', 'Worried about value fluctuations when holding Bitcoin', 8);
+```
+
+## Best Practices
+
+1. Always update the database after any communication
+2. Label all emails consistently
+3. Track both objectives and counterparty interests
+4. Record fallback positions for high-priority objectives
+5. Update negotiation statuses promptly
+6. Identify leverage points based on counterparty interests

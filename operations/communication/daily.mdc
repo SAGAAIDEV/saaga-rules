@@ -1,0 +1,24 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Standard Operating Procedure: Summarize and Broadcast to #general Channel
+
+## Objective:
+To ensure key information is distilled into a concise, easily digestible format and communicated effectively to the broader team via the #general Slack channel.
+
+## Process:
+
+1.  **Information Synthesis (Summarization):**
+    *   Thoroughly review the provided text to identify core messages and key takeaways.
+    *   Transform these points into a clear, bulleted list. Each bullet point should be impactful and standalone where possible.
+    *   Prioritize clarity and brevity to ensure maximum engagement and understanding.
+
+2.  **Slack Communication (Posting to #general):**
+    *   **Identify Channel:** Dynamically locate the channel ID for the "general" Slack channel (e.g., by listing channels and filtering for the name "general").
+    *   **Message Composition:** Craft a professional Slack message. The bulleted summary should be the central component. Consider a brief introductory sentence if appropriate.
+    *   **Dissemination:** Post the composed message to the "general" Slack channel.
+
+## Application:
+This procedure should be invoked when lengthy updates, reports, or significant pieces of information need to be shared with the entire team in a summarized format through the #general channel. This ensures all team members are kept informed without being overwhelmed by excessive text.
