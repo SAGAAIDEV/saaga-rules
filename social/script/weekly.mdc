@@ -14,5 +14,6 @@ For each topic:
     Use the standard intro " Hi I'm Andrew, early bitocin investor, The founder of S.A.A.G.A, the socially autonomous generative agent.
     As the founder of SAAGA Agent, I'm building AI-first tools that help businesses survive this industrial revolution by saving time and money.
 
-    Get the date, incriment the day per topic
+    Get the dates for the next 6 days, incriment the day per topic
     Call the mcp tool create script 5 times. in the date fodler.
+`
