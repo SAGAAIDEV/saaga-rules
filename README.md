@@ -41,3 +41,22 @@ To add this repository as a submodule to another project, follow these steps:
 
 
 
+
+## Running the MCP Configuration Tool
+
+To run the MCP (Multi-Capability Provider) configuration Streamlit application using the `configure.sh` script:
+
+1.  Ensure you have `uv` and `streamlit` installed and available in your Python environment.
+2.  Make the script executable (this usually only needs to be done once):
+    ```sh
+    chmod +x configure.sh
+    ```
+3.  Execute the script from the project root directory:
+    ```sh
+    ./configure.sh
+    ```
+
+This will start the Streamlit server, and you can access the application in your web browser, typically at `http://localhost:8501`.
+
+
+

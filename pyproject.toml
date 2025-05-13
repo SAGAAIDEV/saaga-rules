@@ -7,8 +7,13 @@ authors = [
     { name = "Andrew Oseen", email = "amovfx@protonmail.com" }
 ]
 requires-python = ">=3.11"
-dependencies = []
+dependencies = [
+    "fire>=0.7.0",
+    "streamlit>=1.45.1",
+    "watchdog>=6.0.0",
+]
 
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+

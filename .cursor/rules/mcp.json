@@ -1,0 +1,41 @@
+{
+    "mcpServers": {
+        "base": {
+            "command": "uv",
+            "args": [
+                "--directory=/Users/andrew/saga/saaga-mcp-base",
+                "run",
+                "server"
+            ],
+            "env": {
+                "sqldb_path": "./saaga-mcp-base.sqlite3"
+            }
+        }
+    },
+    "mcp-atlassian": {
+        "command": "uvx",
+        "args": [
+            "mcp-atlassian",
+            "--confluence-username=derp",
+            "--confluence-token=asdf",
+            "--confluence-token=",
+            "--jira-username=Andrew",
+            "--jira-token=asdf",
+            "--jira-token="
+        ]
+    },
+    "github": {
+        "command": "docker",
+        "args": [
+            "run",
+            "-i",
+            "--rm",
+            "-e",
+            "GITHUB_PERSONAL_ACCESS_TOKEN",
+            "ghcr.io/github/github-mcp-server"
+        ],
+        "env": {
+            "GITHUB_PERSONAL_ACCESS_TOKEN": "asdfasdf"
+        }
+    }
+}
