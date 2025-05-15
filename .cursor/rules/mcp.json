@@ -1,41 +1,77 @@
 {
-    "mcpServers": {
-        "base": {
-            "command": "uv",
-            "args": [
-                "--directory=/Users/andrew/saga/saaga-mcp-base",
-                "run",
-                "server"
-            ],
-            "env": {
-                "sqldb_path": "./saaga-mcp-base.sqlite3"
-            }
-        }
+  "mcpServers": {
+    "base": {
+      "command": "uv",
+      "args": [
+        "--directory=/Users/andrew/saga/saaga-mcp-base",
+        "run",
+        "server"
+      ],
+      "env": {
+        "sqldb_path": "./saaga-mcp-base.sqlite3"
+      }
     },
     "mcp-atlassian": {
-        "command": "uvx",
-        "args": [
-            "mcp-atlassian",
-            "--confluence-username=derp",
-            "--confluence-token=asdf",
-            "--confluence-token=",
-            "--jira-username=Andrew",
-            "--jira-token=asdf",
-            "--jira-token="
-        ]
+      "command": "uvx",
+      "args": [
+        "mcp-atlassian",
+        "--confluence-url=https://saaga-team.atlassian.net",
+        "--confluence-username=saaga@saaga.dev",
+        "--confluence-token=ATATT3xFfGF0VLwuzq05wkf1LLEquqnX1i7b7tEht7IqyAXLxzhFoqVfEKVlqlBIiGkUCoNJOu9ry-cCfnzaGEOOPLQKv7YgH1YRptFgPrF8_M1u2Scz8jzwzvCeKjwBU6YgXFkiExzELiy8TZWKYMVV4JxVfJkvQvYVxiE0NGyIKt6KlIqeRbA=E83E27C3",
+        "--jira-url=https://saaga-team.atlassian.net",
+        "--jira-username=saaga@saaga.dev",
+        "--jira-token=ATATT3xFfGF0VLwuzq05wkf1LLEquqnX1i7b7tEht7IqyAXLxzhFoqVfEKVlqlBIiGkUCoNJOu9ry-cCfnzaGEOOPLQKv7YgH1YRptFgPrF8_M1u2Scz8jzwzvCeKjwBU6YgXFkiExzELiy8TZWKYMVV4JxVfJkvQvYVxiE0NGyIKt6KlIqeRbA=E83E27C3"
+      ]
     },
     "github": {
-        "command": "docker",
-        "args": [
-            "run",
-            "-i",
-            "--rm",
-            "-e",
-            "GITHUB_PERSONAL_ACCESS_TOKEN",
-            "ghcr.io/github/github-mcp-server"
-        ],
-        "env": {
-            "GITHUB_PERSONAL_ACCESS_TOKEN": "asdfasdf"
-        }
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "ghcr.io/github/github-mcp-server"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "asdfasdf",
+        "GITHUB_TOOLSETS": "repos,issues,pull_requests,code_security"
+      }
     }
+  },
+
+  "git-cmd": {
+    "command": "uv",
+    "args": [
+      "--directory=/Users/andrew/saga/servers/src/git",
+      "run",
+      "python",
+      "src/mcp_server_git",
+      "--repository",
+      "/Users/andrew/saga/videos"
+    ]
+  },
+  "slack": {
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-slack"],
+    "env": {
+      "SLACK_BOT_TOKEN": "",
+      "SLACK_TEAM_ID": "",
+      "SLACK_CHANNEL_IDS": ""
+    }
+  },
+  "mcp-gsuite": {
+    "command": "uv",
+    "args": [
+      "--directory",
+      "/Users/andrew/saga/mcp-gsuite",
+      "run",
+      "mcp-gsuite"
+    ],
+    "env": {
+      "GSUITE_CREDENTIALS_DIR": "/Users/andrew/saga/mcp-gsuite/.credentials",
+      "GSUITE_ACCOUNTS_FILE": ".accounts.json",
+      "GSUITE_CLIENT_SECRET_FILE": ".client_secret.json"
+    }
+  }
 }
