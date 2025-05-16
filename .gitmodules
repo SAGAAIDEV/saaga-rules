@@ -5,3 +5,6 @@
 [submodule "src/saaga_rules/mcp_servers/development/github-mcp-server"]
 	path = src/saaga_rules/mcp_servers/development/github-mcp-server
 	url = https://github.com/SAGAAIDEV/github-mcp-server.git
+[submodule "src/saaga_rules/mcp_servers/development/mcp-atlassian"]
+	path = src/saaga_rules/mcp_servers/development/mcp-atlassian
+	url = https://github.com/SAGAAIDEV/mcp-atlassian.git
