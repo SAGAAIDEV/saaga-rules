@@ -1,3 +1,4 @@
 [submodule "src/saaga_rules/mcp_servers/saaga-mcp-base"]
 	path = src/saaga_rules/mcp_servers/saaga-mcp-base
 	url = https://github.com/SAGAAIDEV/saaga-mcp-base.git
+

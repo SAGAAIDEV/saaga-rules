@@ -38,4 +38,62 @@ The core vision is to empower users to effortlessly configure and manage all MCP
 *   Auditing and logging of configuration changes.
 *   GUI or Web-based interface for enhanced usability.
 
-This program aims to be the definitive solution for MCP server setup, ensuring a smooth, secure, and efficient process for the entire organization. 
+This program aims to be the definitive solution for MCP server setup, ensuring a smooth, secure, and efficient process for the entire organization.
+
+## 7. Managed MCP Server Categories
+
+This program is designed to manage configurations for a variety of MCP servers across different departments. The initial scope includes, but is not limited to, the following categories and specific server instances:
+
+### Development
+*   PyTest
+*   Formatting/ pylinting
+
+*   GitHub
+*   Git Command Line
+*   Atlassian
+
+### Finance
+*   Bitcoin
+*   Lightning Network
+*   Taproot Assets
+*   Coinbase
+*   Kraken
+
+### Marketing and Sales
+*   Salesforce
+*   MCP
+
+### Utilities
+*   Text to Speech
+*   Speech to Text
+
+### Operations
+*   G Suite
+*   Slack
+*   IPFS
+
+### Social Media
+*   Facebook
+*   X (formerly Twitter)
+*   Instagram
+*   LinkedIn
+*   TikTok
+*   Pinterest
+*   Snapchat
+*   Reddit
+*   YouTube
+*   WhatsApp
+*   Telegram
+*   Discord
+*   RedNote
+*   Hackernews
+
+### Analytics and Big Data
+*   Apollo (GraphQL Platform)
+*   LinkedIn (Data Analytics)
+*   Google Analytics
+*   Other Large Data Brokers (e.g., Acxiom, Experian, Equifax)
+
+### General Databases
+*   SQL (e.g., PostgreSQL, MySQL, SQL Server, Oracle)
+*   Neo4j (Graph Database)
