@@ -47,7 +47,6 @@ This program is designed to manage configurations for a variety of MCP servers a
 ### Development
 *   PyTest
 *   Formatting/ pylinting
-
 *   GitHub
 *   Git Command Line
 *   Atlassian
@@ -61,7 +60,6 @@ This program is designed to manage configurations for a variety of MCP servers a
 
 ### Marketing and Sales
 *   Salesforce
-*   MCP
 
 ### Utilities
 *   Text to Speech

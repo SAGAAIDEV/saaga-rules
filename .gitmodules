@@ -8,3 +8,9 @@
 [submodule "src/saaga_rules/mcp_servers/development/mcp-atlassian"]
 	path = src/saaga_rules/mcp_servers/development/mcp-atlassian
 	url = https://github.com/SAGAAIDEV/mcp-atlassian.git
+[submodule "src/saaga_rules/mcp_servers/development/mcp-git"]
+	path = src/saaga_rules/mcp_servers/development/mcp-git
+	url = https://github.com/SAGAAIDEV/mcp-git.git
+[submodule "src/saaga_rules/mcp_servers/operations/mcp-slack"]
+	path = src/saaga_rules/mcp_servers/operations/mcp-slack
+	url = https://github.com/SAGAAIDEV/mcp-slack.git
