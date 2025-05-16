@@ -17,3 +17,6 @@
 [submodule "src/saaga_rules/mcp_servers/operations/mcp-gsuite"]
 	path = src/saaga_rules/mcp_servers/operations/mcp-gsuite
 	url = https://github.com/SAGAAIDEV/mcp-gsuite.git
+[submodule "src/saaga_rules/mcp_servers/operations/mcp-ipfs"]
+	path = src/saaga_rules/mcp_servers/operations/mcp-ipfs
+	url = https://github.com/amovfx/mcp-ipfs.git
