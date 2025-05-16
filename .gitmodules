@@ -19,4 +19,7 @@
 	url = https://github.com/SAGAAIDEV/mcp-gsuite.git
 [submodule "src/saaga_rules/mcp_servers/operations/mcp-ipfs"]
 	path = src/saaga_rules/mcp_servers/operations/mcp-ipfs
-	url = https://github.com/amovfx/mcp-ipfs.git
+	url = https://github.com/SAGAAIDEV/mcp-ipfs.git
+[submodule "src/saaga_rules/mcp_servers/operations/mcp-gdrive"]
+	path = src/saaga_rules/mcp_servers/operations/mcp-gdrive
+	url = https://github.com/SAGAAIDEV/mcp-gdrive.git
