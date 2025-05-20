@@ -1,0 +1,6 @@
+---
+description: 
+globs: *.md
+alwaysApply: false
+---
+Only update the md file, do not code.

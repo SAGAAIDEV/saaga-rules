@@ -4,10 +4,5 @@ globs:
 alwaysApply: false
 ---
 Confluence: SM
-Jira: SOC
-
-Transition IDs:
-- 11: To Do
-- 21: In Progress
-- 31: Done
+Jira: MIX
 
