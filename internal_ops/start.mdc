@@ -3,3 +3,6 @@ description:
 globs: 
 alwaysApply: false
 ---
+get my emails from the last 2 days that are unread in saaga@saaga.dev
+get my all my calendar events
+get my weekly in progress tasks from project 'WT'

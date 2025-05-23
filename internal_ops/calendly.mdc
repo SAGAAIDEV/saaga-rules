@@ -1,5 +1,5 @@
 ---
-description: Attach when asked to send a calendly
+description: Attach when asked to send a calendly in an email
 globs: 
 alwaysApply: false
 ---
