@@ -1,21 +1,5 @@
-[submodule "src/saaga_rules/mcp_servers/development/github-mcp-server"]
-	path = src/saaga_rules/mcp_servers/development/github-mcp-server
-	url = https://github.com/SAGAAIDEV/github-mcp-server.git
-[submodule "src/saaga_rules/mcp_servers/development/mcp-atlassian"]
-	path = src/saaga_rules/mcp_servers/development/mcp-atlassian
-	url = https://github.com/SAGAAIDEV/mcp-atlassian.git
-[submodule "src/saaga_rules/mcp_servers/development/mcp-git"]
-	path = src/saaga_rules/mcp_servers/development/mcp-git
-	url = https://github.com/SAGAAIDEV/mcp-git.git
-[submodule "src/saaga_rules/mcp_servers/operations/mcp-slack"]
-	path = src/saaga_rules/mcp_servers/operations/mcp-slack
-	url = https://github.com/SAGAAIDEV/mcp-slack.git
-[submodule "src/saaga_rules/mcp_servers/operations/mcp-gsuite"]
-	path = src/saaga_rules/mcp_servers/operations/mcp-gsuite
-	url = https://github.com/SAGAAIDEV/mcp-gsuite.git
-[submodule "src/saaga_rules/mcp_servers/operations/mcp-ipfs"]
-	path = src/saaga_rules/mcp_servers/operations/mcp-ipfs
-	url = https://github.com/SAGAAIDEV/mcp-ipfs.git
-[submodule "src/saaga_rules/mcp_servers/operations/mcp-gdrive"]
-	path = src/saaga_rules/mcp_servers/operations/mcp-gdrive
-	url = https://github.com/SAGAAIDEV/mcp-gdrive.git
+
+
+
+
+
