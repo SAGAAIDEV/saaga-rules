@@ -1,9 +1,0 @@
----
-description: 
-globs: 
-alwaysApply: false
----
-DO NOT USE TRANSCRIBE_FILE MCP TOOL ON VIDEO FILES.
-1. With mcp tool extract_audio from camera.mp4 video recording. 
-2. Run mcp tool transcribe_file on the the audio file that is returned from the extract_audio tool result.
-3. Run the mcp tool compute_speech_clusters on the transcribe json file.

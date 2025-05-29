@@ -1,8 +1,0 @@
----
-description: Attach before running mcp tool jira_get_issue or jira_transition_issue
-globs: 
-alwaysApply: false
----
-Confluence: SM
-Jira: MIX
-

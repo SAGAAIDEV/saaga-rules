@@ -1,7 +1,0 @@
----
-description: After a the transcription rule of a recording is complete.
-globs: 
-alwaysApply: false
----
-1. Use the mcp tool classify_screen_focus on the the transcript file.
-2. Use the mcp tool edit_screen_context on the screen focus json file.

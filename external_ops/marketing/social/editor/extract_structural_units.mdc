@@ -1,7 +1,0 @@
----
-description: 
-globs: 
-alwaysApply: false
----
-If a capture directory isn't in the chat history, run the mcp tool get_capture_directory.
-Run mcp tool classify_structural_units

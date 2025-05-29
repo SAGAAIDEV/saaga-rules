@@ -1,8 +1,0 @@
----
-description: 
-globs: 
-alwaysApply: false
----
-Run ranker mcp tool on /Users/andrew/saga/videos/captures/2025-04-10/11
-
-Verify with read logs.

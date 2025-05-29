@@ -1,6 +1,0 @@
----
-description: When an mcp tool returns an exception
-globs: 
-alwaysApply: false
----
-Read the logs of the mcp tool and propose a fix.
